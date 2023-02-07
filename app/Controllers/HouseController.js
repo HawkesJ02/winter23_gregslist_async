@@ -3,6 +3,7 @@ import { appState } from "../AppState.js";
 import { setHTML } from "../Utils/Writer.js";
 import { Pop } from "../Utils/Pop.js";
 import { houseService } from "../Services/HouseService.js";
+import { getFormData } from "../Utils/FormHandler.js";
 
 function _draw_houses(){
   let template = ''
@@ -34,10 +35,22 @@ export class HouseController{
     try {
       window.event?.preventDefault()
       const form = window.event.target
+      const form_data = getFormData(form)
       console.log(formdata);
     } catch (error) {
       Pop.error(error.message)
       console.log(error);
     }
+  }
+
+  draw_form(houseId){
+try {
+  if (houseId) {
+    let house = appState.houses.find(house => house.id == houseId)
+  }
+} catch (error) {
+  Pop.error(error.message)
+  console.log(error);
+}
   }
 }
