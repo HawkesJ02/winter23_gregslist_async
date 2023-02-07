@@ -6,13 +6,21 @@ import { houseService } from "../Services/HouseService.js";
 
 function _draw_houses(){
   let template = ''
+  appState.houses.forEach(h => template += h.house_template)
+  setHTML('listings', template)
 }
 
 export class HouseController{
   constructor(){
     console.log('test constructor house controller');
     this.get_houses()
+    appState.on('houses', _draw_houses)
   }
+
+  house_listings(){
+    _draw_houses()
+  }
+
  async get_houses() {
   try {
     await houseService.get_houses()
@@ -20,5 +28,16 @@ export class HouseController{
     Pop.error(error.message)
     console.log(error);
   }
+  }
+
+  async create_house(){
+    try {
+      window.event?.preventDefault()
+      const form = window.event.target
+      console.log(formdata);
+    } catch (error) {
+      Pop.error(error.message)
+      console.log(error);
+    }
   }
 }

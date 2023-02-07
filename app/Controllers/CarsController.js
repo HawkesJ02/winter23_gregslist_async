@@ -23,7 +23,7 @@ function _drawCars() {
 
 export class CarsController {
   constructor () {
-    this.getCars()
+    // this.getCars()
     appState.on('cars', _drawCars)
   }
 
@@ -63,6 +63,10 @@ export class CarsController {
       console.error(error)
       Pop.error(error.message)
     }
+  }
+
+  car_listings(){
+    _drawCars()
   }
 
   drawForm(carId) {

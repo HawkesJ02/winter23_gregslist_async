@@ -7,6 +7,9 @@ class HouseService{
 async get_houses() {
   const response = await sandboxApi.get('/houses/')
   console.log(response.data);
+  const newArray = response.data.map(house => new House(house))
+  appState.houses = newArray
+  console.log(appState.houses)
 }
 
 }
